@@ -1,0 +1,57 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Positronium
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(qm)$
+load("wx.lisp")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+This is problem 5.6 in Townsend, 2nd edition. Given the
+Hamiltonian below compute the energy eigenvalues of positronium.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* make declarations so that the . operator works properly */
+declare([A,omega],scalar,A,complex);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Define the Hamiltonian */
+/* The 1st term is (S1 dot S2) */
+H: (A/hbar^2)*(J1p2m + J1m2p + 2*J1zJ2z) + omega*(J1z - J2z);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Define the basis set */
+B:[[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
+    [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
+    [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
+    [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])]
+]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Calculate the matrix representation of H */
+/* This may take several seconds to complete. */
+Hmat: matrep(H,B);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+eigenvalues(Hmat);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

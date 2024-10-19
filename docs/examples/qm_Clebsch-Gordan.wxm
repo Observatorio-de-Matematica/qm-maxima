@@ -1,0 +1,171 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Calculating Clebsch-Gordan Coefficients
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Let us see how to calculate the Clebsch-Gordan coefficients for
+a two-particle system. Recall that the CB coefficients are the
+amplitudes given by:
+
+<J,M|j1,m1;j2,m2>
+
+We will begin by finding the total spin J and total z-projection M
+for the top of the ladder.
+
+In this example we find the CB coefficients for a spin-1/2 and spin-1
+particle combination.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Load the qm package
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* load the qm package and the wx.lisp file for displaying
+kets in wxMaxima. */
+load(qm);
+load("wx.lisp");
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Construct the top rung of the ladder
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Construct to top of the ladder state */
+JMtop: tpket(jmtop(1/2),jmtop(1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Calculate J^2 for this state */
+Jtsqr(JMtop);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* get the j value for this state */
+get_j(15/4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* get the m value for this state */
+Jtz(JMtop);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Thus, we have found that |J,M> = |3/2,3/2> and we
+can now walk down the ladder.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Take one step down the ladder
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* lower the JMtop state |3/2,3/2> by one step */
+Jm(jmtop(3/2));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* But this is equal to lowering JMtop by one step */
+Jtm(JMtop);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Therefore
+|3/2,1/2> = 1/(sqrt(3)*hbar) * Jtm(JMtop)
+which we now compute:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+K3212: tpscmult(1/(sqrt(3)*hbar),Jtm(JMtop));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+We have thus found the coefficients:
+< 3/2 , 1/2 | 1/2,1/2 ; 1,0 > = sqrt(2/3)
+< 3/2 , 1/2 | 1/2,-1/2 ; 1,1 > = sqrt(1/3)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Step down to next rung
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+The first step down the ladder is from | 3/2, 1/2 > to the state
+| 3/2, -1/2 >.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Jtm(K3212);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* But stepping down the |JM> ket gives */
+Jm( ket([3/2,1/2]) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Thus K32m12 is */
+K32m12: tpscmult(1/(2*hbar), Jtm(K3212) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+The CB coefficients are thus:
+< 3/2, -1/2 | 1/2, -1/2; 1,0 > = sqrt(2/3)
+< 3/2, -1/2 | 1/2, 1/2; 1,-1 > = sqrt(1/3)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Bottom rung
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+The bottom rung of the ladder is simply | 3/2 , -3/2 >
+which we get from stepping down K32m12 to K32m32.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tmp: Jtm(K32m12);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* lowering the JM ket gives */
+Jm(ket([3/2,-1/2]));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Thus the coefficient of the bottom rung is 1. */
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

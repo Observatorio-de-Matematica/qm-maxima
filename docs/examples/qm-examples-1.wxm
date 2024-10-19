@@ -1,0 +1,123 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Package QM examples
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(qm);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("wx.lisp");
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Single-state kets and bras
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+k: ket([u]);
+b: bra([d]);
+b . k;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+L: makelist( concat(c,i), i, 5 );
+apply('declare,[L,complex]);
+facts();
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+k: sum( concat(c,i)*ket([i]),i,1,5);
+b: dagger(k);
+b . k;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(a,b)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Tensor products
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+k: ket([a1,b1]) + ket([c1,d1]);
+b: bra([a2,b2]) + bra([c2,d2]);
+b . k;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bell: 1/sqrt(2)*(ket([u,d])-ket([d,u]));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+belld: dagger(expand(bell));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+belld . bell;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Partial traces
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bra([u,Id]) . ket([u,d]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bra([u,Id]) . bell;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rho: bell . belld,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume( not equal(u,d) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+utrace: bra([u,Id]) . rho . ket([u,Id]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+uutrace: bra([u,u]) . rho . ket([u,u]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+btrace: bra([Id,d]) . rho . ket([Id,d]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bbtrace: bra([d,d]) . rho . ket([d,d]);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

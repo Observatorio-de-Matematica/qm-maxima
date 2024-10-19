@@ -1,0 +1,141 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Package QM examples
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(qm);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("wx.lisp");
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Spin-1/2 particles
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zp;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+xp;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+yp;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+braket(zp,xp);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expect(Sx,xp);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+qm_variance(Sx,zp);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Spin-1
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Sz1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Sy1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Spin-3/2
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+SY(3/2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Rotation matrices
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+RY(1/2,t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+RY(1,t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Time-evolution operator
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H: Sx+Sy;
+U(H,t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+(j,m)- kets and bras
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+k: ket([j1,m1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b: bra([j1,m1]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+braket(b,k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+JP(k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+JM(k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Jsqr(k);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

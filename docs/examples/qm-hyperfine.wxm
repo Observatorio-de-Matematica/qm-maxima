@@ -1,0 +1,86 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Hyperfine structure in the H atom
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(qm);
+load("wx.lisp");
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+The hyperfine splitting in the hydrogen atom is due to the
+spin-spin interaction of the electron and the proton. The
+Hamiltonian is  2*A/hbar^2 * (S1 dot S2). 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+The Hamiltonian
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/*
+The Hamiltonian can be written in terms of the
+raising and lowering operators and J1zJ2z.
+*/
+declare(A,scalar);
+H: A/hbar^2*(J1p2m + J1m2p + 2*J1zJ2z);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* We use the predefined basis set bj1212: */
+bj1212;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Calculate the matrix representation in this basis */
+Hmat: matrep(H,bj1212);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* Next, calculate the eigenvalues and eigenvectors. */
+[evals,evecs]:eigenvectors(Hmat);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+This result shows the three degenerate states (the triplet), and the single
+ground state (the singlet). 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+The singlet state
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Let's construct the stationary states from the eigenvectors and the basis
+set. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+states: stationary(evals,evecs,bj1212);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Jtz(states[1]);
+Jtz(states[2]);
+Jtz(states[3]);
+Jtz(states[4]);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
