@@ -31,19 +31,15 @@ H: (A/hbar^2)*(J1p2m + J1m2p + 2*J1zJ2z) + omega*(J1z - J2z);
 
 
 /* [wxMaxima: input   start ] */
-/* Define the basis set */
-B:[[tpket,1,ket([1/2,1/2]),ket([1/2,1/2])],
-    [tpket,1,ket([1/2,1/2]),ket([1/2,-1/2])],
-    [tpket,1,ket([1/2,-1/2]),ket([1/2,1/2])],
-    [tpket,1,ket([1/2,-1/2]),ket([1/2,-1/2])]
-]$
+/* Define the basis set. Use predefined bj1212 */
+bj1212;
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
 /* Calculate the matrix representation of H */
 /* This may take several seconds to complete. */
-Hmat: matrep(H,B);
+Hmat: matrep(H,bj1212);
 /* [wxMaxima: input   end   ] */
 
 
